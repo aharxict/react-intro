@@ -33,6 +33,13 @@ class App extends Component {
     const doesShowPersons = this.state.showPersons;
     this.setState({ showPersons: !doesShowPersons});
   };
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  }
+
   render() {
     const style = {
       color: 'red',
@@ -45,8 +52,11 @@ class App extends Component {
     if ( this.state.showPersons ) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name = {person.name} age = {person.age} />
+          {this.state.persons.map( (person, index) => {
+            return <Person
+              click = { () => this.deletePersonHandler(index) }
+              name = {person.name}
+              age = {person.age} />
           })}
         </div>
       );
@@ -59,18 +69,19 @@ class App extends Component {
         <br/>
         <button style={style}
           onClick={ () => this.changeNameHandler('Body') }>Switch me</button>
-            { this.state.showPersons ?
-              <div>
-              <Person name = {this.state.persons[0].name} age = {this.state.persons[0].age} />
-                <Person
-                name = {this.state.persons[1].name}
-              age = {this.state.persons[1].age}
-              click = {this.changeNameHandler.bind(this, 'DDD')}
-              changed = {this.nameChangeHandler}> Inner text <b>bold</b> </Person>
-              <Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />
-              </div>
-              : null
-            }
+
+        {/*{ this.state.showPersons ?*/}
+          {/*<div>*/}
+          {/*<Person name = {this.state.persons[0].name} age = {this.state.persons[0].age} />*/}
+            {/*<Person*/}
+            {/*name = {this.state.persons[1].name}*/}
+          {/*age = {this.state.persons[1].age}*/}
+          {/*click = {this.changeNameHandler.bind(this, 'DDD')}*/}
+          {/*changed = {this.nameChangeHandler}> Inner text <b>bold</b> </Person>*/}
+          {/*<Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />*/}
+          {/*</div>*/}
+          {/*: null*/}
+        {/*}*/}
             <div>
               <h6>Separate variable block</h6>
               {persons}

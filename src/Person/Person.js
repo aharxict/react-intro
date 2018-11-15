@@ -7,7 +7,7 @@ const person = (props) => {
           <p>{props.children}</p>
           {
             props.click ?
-              <button onClick={props.click}>Inner BTN</button>
+              <button onClick={props.click}>Delete  BTN</button>
               : null
           }
           <input onChange={props.changed} type="text" value={props.name}/>
