@@ -41,6 +41,17 @@ class App extends Component {
       backgroundColor: 'transparent',
       cursor: 'pointer'
     };
+    let persons = null;
+    if ( this.state.showPersons ) {
+      persons = (
+        <div>
+          {this.state.persons.map(person => {
+            return <Person name = {person.name} age = {person.age} />
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Title</h1>
@@ -60,6 +71,10 @@ class App extends Component {
               </div>
               : null
             }
+            <div>
+              <h6>Separate variable block</h6>
+              {persons}
+            </div>
       </div>
     );
   }
