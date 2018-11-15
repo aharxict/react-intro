@@ -8,7 +8,8 @@ class App extends Component {
       { name: 'qqq', age: 25 },
       { name: 'aaa', age: 22 },
       { name: 'zzz', age: 21 }
-    ]
+    ],
+    showPersons: false
   };
   changeNameHandler = (Name) => {
     this.setState( {
@@ -28,6 +29,10 @@ class App extends Component {
       ]
     } )
   };
+  togglePersonsHandler = () => {
+    const doesShowPersons = this.state.showPersons;
+    this.setState({ showPersons: !doesShowPersons});
+  };
   render() {
     const style = {
       color: 'red',
@@ -39,15 +44,22 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Title</h1>
+        <button onClick={this.togglePersonsHandler}>Toggle</button>
+        <br/>
         <button style={style}
           onClick={ () => this.changeNameHandler('Body') }>Switch me</button>
-        <Person name = {this.state.persons[0].name} age = {this.state.persons[0].age} />
-        <Person
-          name = {this.state.persons[1].name}
-          age = {this.state.persons[1].age}
-          click = {this.changeNameHandler.bind(this, 'DDD')}
-          changed = {this.nameChangeHandler}> Inner text <b>bold</b> </Person>
-        <Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />
+            { this.state.showPersons ?
+              <div>
+              <Person name = {this.state.persons[0].name} age = {this.state.persons[0].age} />
+                <Person
+                name = {this.state.persons[1].name}
+              age = {this.state.persons[1].age}
+              click = {this.changeNameHandler.bind(this, 'DDD')}
+              changed = {this.nameChangeHandler}> Inner text <b>bold</b> </Person>
+              <Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />
+              </div>
+              : null
+            }
       </div>
     );
   }

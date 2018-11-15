@@ -5,7 +5,11 @@ const person = (props) => {
         <div className='Person'>
           <p>Hello {props.name} world with {props.age}! </p>
           <p>{props.children}</p>
-          <button onClick={props.click}>Inner BTN</button>
+          {
+            props.click ?
+              <button onClick={props.click}>Inner BTN</button>
+              : null
+          }
           <input onChange={props.changed} type="text" value={props.name}/>
         </div>
     )
