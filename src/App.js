@@ -63,6 +63,16 @@ class App extends Component {
       backgroundColor: 'transparent',
       cursor: 'pointer'
     };
+
+    const classes = [];
+    // const classes = ['red' , 'bold'].join(' ')
+
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
     let persons = null;
     if ( this.state.showPersons ) {
       persons = (
@@ -77,12 +87,16 @@ class App extends Component {
           })}
         </div>
       );
+      // style = ({backgroundColor: 'red', color: 'green'});
+      style.backgroundColor ='red';
+      style.color ='green';
     }
 
     return (
       <div className="App">
         <h1>Title</h1>
-        <button onClick={this.togglePersonsHandler}>Toggle</button>
+        <p className={classes.join(' ')}>really new APP</p>
+        <button style={style} onClick={this.togglePersonsHandler}>Toggle</button>
         <br/>
         {/*<button style={style}*/}
           {/*onClick={ () => this.changeNameHandler('Body') }>Switch me</button>*/}
