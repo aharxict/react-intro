@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import styles from './App.css';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -11,15 +11,7 @@ class App extends Component {
     ],
     showPersons: false
   };
-  // changeNameHandler = (Name) => {
-  //   this.setState( {
-  //     persons: [
-  //       { name: 'CCC', age: 25 },
-  //       { name: 'aaa', age: 22 },
-  //       { name: Name, age: 31 }
-  //     ]
-  //   } )
-  // };
+
   nameChangeHandler = (event, id) => {
 
     const personIndex = this.state.persons.findIndex( p => {
@@ -28,7 +20,7 @@ class App extends Component {
 
     const person = {
       ...this.state.persons[personIndex]
-    }
+    };
     person.name = event.target.value;
     const persons = [...this.state.persons];
 
@@ -36,11 +28,6 @@ class App extends Component {
 
     this.setState( {
       persons: persons
-      //   [
-      //   { name: 'CCC', age: 25 },
-      //   { name: event.target.value, age: 22 },
-      //   { name: 'DDD1', age: 31 }
-      // ]
     } )
   };
   togglePersonsHandler = () => {
@@ -56,24 +43,18 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      color: 'red',
-      padding: '8px',
-      border: '1px solid blue',
-      backgroundColor: 'transparent',
-      cursor: 'pointer'
-    };
 
     const classes = [];
     // const classes = ['red' , 'bold'].join(' ')
 
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      classes.push(styles.red);
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      classes.push(styles.bold);
     }
     let persons = null;
+    let btnClass = '';
     if ( this.state.showPersons ) {
       persons = (
         <div>
@@ -87,32 +68,16 @@ class App extends Component {
           })}
         </div>
       );
-      // style = ({backgroundColor: 'red', color: 'green'});
-      style.backgroundColor ='red';
-      style.color ='green';
+      btnClass = styles.Red
     }
 
     return (
-      <div className="App">
+      <div className={styles.App}>
         <h1>Title</h1>
         <p className={classes.join(' ')}>really new APP</p>
-        <button style={style} onClick={this.togglePersonsHandler}>Toggle</button>
-        <br/>
-        {/*<button style={style}*/}
-          {/*onClick={ () => this.changeNameHandler('Body') }>Switch me</button>*/}
-
-        {/*{ this.state.showPersons ?*/}
-          {/*<div>*/}
-          {/*<Person name = {this.state.persons[0].name} age = {this.state.persons[0].age} />*/}
-            {/*<Person*/}
-            {/*name = {this.state.persons[1].name}*/}
-          {/*age = {this.state.persons[1].age}*/}
-          {/*click = {this.changeNameHandler.bind(this, 'DDD')}*/}
-          {/*changed = {this.nameChangeHandler}> Inner text <b>bold</b> </Person>*/}
-          {/*<Person name = {this.state.persons[2].name} age = {this.state.persons[2].age} />*/}
-          {/*</div>*/}
-          {/*: null*/}
-        {/*}*/}
+        <button
+          className={btnClass}
+          onClick={this.togglePersonsHandler}>Toggle</button>
             <div>
               <h6>Separate variable block</h6>
               {persons}
